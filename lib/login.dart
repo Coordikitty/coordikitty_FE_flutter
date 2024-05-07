@@ -1,7 +1,9 @@
 import 'package:coordikitty_fe_flutter/widgets/loginbutton.dart';
 import 'package:coordikitty_fe_flutter/widgets/logintextform.dart';
 import 'package:coordikitty_fe_flutter/widgets/sociallogin.dart';
+import 'package:coordikitty_fe_flutter/find_email.dart';
 import 'package:flutter/material.dart';
+
 
 
 class Login extends StatelessWidget {
@@ -65,12 +67,17 @@ class Login extends StatelessWidget {
                 SizedBox(height: 15,),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    '이메일/비밀번호를 잊으셨나요?',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute( builder: (BuildContext context) => Find_Email()));
+                    },
+                    child: Text(
+                      '이메일/비밀번호를 잊으셨나요?',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

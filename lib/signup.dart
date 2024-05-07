@@ -1,5 +1,5 @@
 import 'package:coordikitty_fe_flutter/widgets/duplecheckButton.dart';
-import 'package:coordikitty_fe_flutter/widgets/signupbutton.dart';
+import 'package:coordikitty_fe_flutter/widgets/authbutton.dart';
 import 'package:coordikitty_fe_flutter/widgets/signuptextform.dart';
 import 'package:flutter/material.dart';
 

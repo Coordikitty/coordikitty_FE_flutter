@@ -14,7 +14,7 @@ class SignUpButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         if(text == '확인')
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Information()));
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Login()));
         else if(text == '취소')
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Login()));
       },
