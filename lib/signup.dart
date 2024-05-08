@@ -167,9 +167,9 @@ class  SignUp extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SignUpButton(text: '확인', color: 0xffF83967),
+                      AuthButton(text: '확인', color: 0xffF83967),
                       SizedBox(width: 50,),
-                      SignUpButton(text: '취소', color: 0xffAEAEAE),
+                      AuthButton(text: '취소', color: 0xffAEAEAE),
                     ],
                   ),
                   SizedBox(height: 15,),
