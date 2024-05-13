@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:coordikitty_fe_flutter/information.dart';
 import 'login.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
           //splashTransition: SplashTransition.fadeTransition,
           //splashTransition: SplashTransition.rotationTransition,
           backgroundColor: Colors.white,
-          nextScreen: Login(),
+          nextScreen: Information(),
+          //nextScreen: Login(),
         )
     );
   }
