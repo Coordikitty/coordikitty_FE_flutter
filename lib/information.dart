@@ -1,3 +1,4 @@
+import 'package:coordikitty_fe_flutter/widgets/informationbutton.dart';
 import 'package:coordikitty_fe_flutter/widgets/informationtextform.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class Information extends StatelessWidget {
                 ),
                 SizedBox(height: 50,),
                 Text(
-                    '키를 입력 해주세요',
+                  '키를 입력 해주세요',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -63,7 +64,7 @@ class Information extends StatelessWidget {
                 SizedBox(height: 15,),
                 InformationTextForm(controller: tall, textInputType: TextInputType.text),
                 SizedBox(height: 30,),
-
+                InformationButton(),
               ],
             ),
           ),
