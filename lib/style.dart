@@ -1,3 +1,4 @@
+import 'package:coordikitty_fe_flutter/widgets/stylebutton.dart';
 import 'package:flutter/material.dart';
 
 class Style extends StatelessWidget {
@@ -25,8 +26,10 @@ class Style extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  // 이미지 추가
-                )
+                ),
+                // 이미지 추가
+                SizedBox(height: 30,),
+                StyleButton(),
               ],
             ),
           ),
