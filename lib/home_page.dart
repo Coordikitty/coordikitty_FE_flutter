@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             /* 프로필 (이미지, 닉네임, 팔로우 버튼) */
             Row(
               children: [
