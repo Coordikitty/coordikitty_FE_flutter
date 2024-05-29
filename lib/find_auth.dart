@@ -1,4 +1,4 @@
-import 'package:coordikitty_fe_flutter/widgets/findAuthtextform.dart';
+import 'package:coordikitty_fe_flutter/widgets/findauthtextform.dart';
 import 'package:flutter/material.dart';
 
 void main() {

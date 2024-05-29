@@ -1,7 +1,7 @@
 import 'package:coordikitty_fe_flutter/widgets/loginbutton.dart';
 import 'package:coordikitty_fe_flutter/widgets/logintextform.dart';
 import 'package:coordikitty_fe_flutter/widgets/sociallogin.dart';
-import 'package:coordikitty_fe_flutter/findAuth.dart';
+import 'package:coordikitty_fe_flutter/find_auth.dart';
 import 'package:flutter/material.dart';
 
 

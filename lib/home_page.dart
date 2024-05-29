@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coordikitty_fe_flutter/widgets/FeedButton.dart';
+import 'package:coordikitty_fe_flutter/widgets/homebutton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
             /* 좋아요, 북마크 */
             Row(
               children: [
-                FeedButton(
+                HomeButton(
                   text: 'Like',
                   isLiked: isLiked,
                   onTap: toggleLike,
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Spacer(),
-                FeedButton(
+                HomeButton(
                   text: 'Bookmark',
                   isLiked: false,
                   onTap: () {},
