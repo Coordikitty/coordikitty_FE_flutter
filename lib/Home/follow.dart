@@ -1,7 +1,7 @@
-import 'package:coordikitty_fe_flutter/bookmark_page.dart';
-import 'package:coordikitty_fe_flutter/cat_page.dart';
-import 'package:coordikitty_fe_flutter/profile_page.dart';
-import 'package:coordikitty_fe_flutter/search_page.dart';
+import 'package:coordikitty_fe_flutter/Bookmark/bookmark_page.dart';
+import 'package:coordikitty_fe_flutter/Recommend/cat_page.dart';
+import 'package:coordikitty_fe_flutter/Profile/profile_page.dart';
+import 'package:coordikitty_fe_flutter/Search/search_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 

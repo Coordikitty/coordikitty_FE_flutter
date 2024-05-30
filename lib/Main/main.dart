@@ -1,8 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 //import 'package:coordikitty_fe_flutter/widgets/tabbar.dart';
 //import 'package:coordikitty_fe_flutter/information.dart';
-import 'follow.dart';
-import 'login.dart';
+import '../Home/follow.dart';
+import '../Auth/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

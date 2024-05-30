@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../information.dart';
-import '../login.dart';
+import '../Auth/information.dart';
+import '../Auth/login.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key, required this.text, required this.color});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../alarm_page.dart';
-import '../setting_page.dart';
-import 'post_page.dart';
+import '../Profile/alarm_page.dart';
+import '../Profile/setting_page.dart';
+import '../Profile/post_page.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton({Key? key, required this.text}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../follow.dart';
-import '../login.dart';
-import '../signup.dart';
+import '../Home/follow.dart';
+import '../Auth/login.dart';
+import '../Auth/signup.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.text});

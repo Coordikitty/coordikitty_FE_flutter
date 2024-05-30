@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coordikitty_fe_flutter/style.dart';
+import 'package:coordikitty_fe_flutter/Auth/style.dart';
 
 class InformationButton extends StatelessWidget {
   const InformationButton({super.key});

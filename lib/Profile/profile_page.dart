@@ -13,19 +13,20 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   bool postButtonClicked = false;
   bool closetButtonClicked = false;
 
   void togglePostButton() {
     setState(() {
-      postButtonClicked = !postButtonClicked;
+      postButtonClicked = true;
+      closetButtonClicked = false;
     });
   }
 
   void toggleClosetButton() {
     setState(() {
-      closetButtonClicked = !closetButtonClicked;
+      postButtonClicked = false;
+      closetButtonClicked = true;
     });
   }
 
@@ -132,12 +133,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 MyprofileButton(
                   text: 'post',
                   isClicked: postButtonClicked,
-                  onTap: togglePostButton,),
+                  onTap: togglePostButton,
+                ),
                 Spacer(),
                 MyprofileButton(
                   text: 'closet',
                   isClicked: closetButtonClicked,
-                  onTap: toggleClosetButton,),
+                  onTap: toggleClosetButton,
+                ),
                 Spacer(),
               ],
             ),
@@ -149,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SizedBox(height: 5,),
             if (postButtonClicked) LoadFeed(),
-            if (postButtonClicked) LoadCloset(),
+            if (closetButtonClicked) LoadCloset(),
           ],
         ),
       ),

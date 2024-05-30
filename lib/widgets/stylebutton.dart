@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../follow.dart';
+import '../Home/follow.dart';
 
 class StyleButton extends StatelessWidget {
   const StyleButton({super.key});
