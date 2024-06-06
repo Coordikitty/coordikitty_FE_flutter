@@ -44,12 +44,12 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('image/haengraejo.png'),
+                  backgroundImage: AssetImage('image/ive.png'),
                   radius: 20.0,
                 ),
                 SizedBox(width: 15),
                 Text(
-                  'haengraejo',
+                  'ive_wonyoung',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

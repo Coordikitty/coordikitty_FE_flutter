@@ -1,7 +1,9 @@
-import 'package:coordikitty_fe_flutter/widgets/myprofilebutton.dart';
-import 'package:coordikitty_fe_flutter/widgets/profilebutton.dart';
+import 'package:coordikitty_fe_flutter/Profile/cloth_page.dart';
+import 'package:coordikitty_fe_flutter/Profile/post_page.dart';
+import 'package:coordikitty_fe_flutter/Profile/setting_page.dart';
 import 'package:flutter/material.dart';
 
+import 'alarm_page.dart';
 import 'load_closet.dart';
 import 'load_feed.dart';
 
@@ -13,7 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool postButtonClicked = false;
+  bool postButtonClicked = true;
   bool closetButtonClicked = false;
 
   void togglePostButton() {
@@ -43,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               children: [
                 Text(
-                  'haengraejo',
+                  'ive_wonyoung',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -63,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('image/haengraejo.png'),
+                  backgroundImage: AssetImage('image/ive.png'),
                   radius: 45.0,
                 ),
                 Spacer(),
@@ -155,6 +157,113 @@ class _ProfilePageState extends State<ProfilePage> {
             if (closetButtonClicked) LoadCloset(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MyprofileButton extends StatelessWidget {
+  final String text;
+  final bool isClicked;
+  final VoidCallback onTap;
+
+  const MyprofileButton({
+    Key? key,
+    required this.text,
+    required this.isClicked,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String imagePath;
+    if (text == 'closet') {
+      imagePath = isClicked ? 'image/selected_closet.png' : 'image/closet.png';
+    } else {
+      imagePath = isClicked ? 'image/selected_post.png' : 'image/post.png';
+    }
+
+    return InkWell(
+      onTap: onTap,
+      child: ImageIcon(
+        AssetImage(imagePath),
+        size: 20,
+      ),
+    );
+  }
+}
+
+class ProfileButton extends StatelessWidget {
+  const ProfileButton({Key? key, required this.text}) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    String imagePath;
+    VoidCallback? onTap;
+
+    if (text == 'alarm') {
+      imagePath = 'image/alarm.png';
+      onTap = () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AlarmPage()),
+        );
+      };
+    } else if (text == 'posting') {
+      imagePath = 'image/posting.png';
+      onTap = () {
+        showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.post_add),
+                  title: Text("게시물 등록"),
+                  onTap: () {
+                    Navigator.pop(context); // Close the bottom sheet
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PostPage()),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.shopping_bag),
+                  title: Text("옷 등록"),
+                  onTap: () {
+                    Navigator.pop(context); // Close the bottom sheet
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ClothPage()),
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      };
+    } else if (text == 'setting') {
+      imagePath = 'image/setting.png';
+      onTap = () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingPage()),
+        );
+      };
+    } else {
+      return SizedBox();
+    }
+
+    return InkWell(
+      onTap: onTap,
+      child: ImageIcon(
+        AssetImage(imagePath),
+        size: 35,
       ),
     );
   }

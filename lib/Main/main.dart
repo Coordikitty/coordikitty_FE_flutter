@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
           //splashTransition: SplashTransition.fadeTransition,
           splashTransition: SplashTransition.rotationTransition,
           backgroundColor: Colors.white,
-          nextScreen: Follow(),
-          //nextScreen: Login(),
+          //nextScreen: Follow(),
+          nextScreen: Login(),
         )
     );
   }

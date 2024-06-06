@@ -1,8 +1,8 @@
 import 'package:coordikitty_fe_flutter/Bookmark/bookmark_page.dart';
-import 'package:coordikitty_fe_flutter/Recommend/cat_page.dart';
 import 'package:coordikitty_fe_flutter/Profile/profile_page.dart';
 import 'package:coordikitty_fe_flutter/Search/search_page.dart';
 import 'package:flutter/material.dart';
+import '../Recommend/recommed_page.dart';
 import 'home_page.dart';
 
 void main() {
@@ -10,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Follow extends StatefulWidget {
-  const Follow({super.key});
+  const Follow({Key? key}) : super(key: key);
 
   @override
   _FollowState createState() => _FollowState();
@@ -37,7 +37,7 @@ class _FollowState extends State<Follow> {
           children: [
             HomePage(),
             SearchPage(),
-            CatPage(),
+            RecommendPage(),
             BookmarkPage(),
             ProfilePage(),
           ],
@@ -60,6 +60,7 @@ class _FollowState extends State<Follow> {
                 Tab(icon: ImageIcon(AssetImage('image/cat.png'), size: 20)),
                 Tab(icon: ImageIcon(AssetImage('image/bookmark.png'), size: 20)),
                 Tab(icon: ImageIcon(AssetImage('image/person.png'), size: 20)),
+
               ],
             ),
           ],

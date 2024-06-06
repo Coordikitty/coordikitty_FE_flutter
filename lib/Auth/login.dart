@@ -1,21 +1,37 @@
-import 'package:coordikitty_fe_flutter/widgets/loginbutton.dart';
-import 'package:coordikitty_fe_flutter/widgets/logintextform.dart';
+import 'package:coordikitty_fe_flutter/Auth/signup.dart';
 import 'package:coordikitty_fe_flutter/Auth/sociallogin.dart';
-import 'package:coordikitty_fe_flutter/Auth/find_auth.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import '../Home/follow.dart';
+import '../dto/logindto.dart';
+import '../dto/restclient.dart';
+import 'find_auth.dart';
 
+void main() {
+  runApp(MyApp());
+}
 
-class Login extends StatelessWidget {
-  Login({super.key});
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Login(),
+    );
+  }
+}
 
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-    //var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -71,10 +87,11 @@ class Login extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute( builder: (BuildContext context) => FindAuth()));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FindAuth()));
                     },
                   ),
                 ),
@@ -82,20 +99,29 @@ class Login extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LoginButton(text: '회원가입',),
+                    LoginButton(
+                        text: '회원가입',
+                        onPressed: () =>
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUp()))
+                    ),
                     SizedBox(width: 50,),
-                    LoginButton(text: '로그인',),
+                    LoginButton(
+                      text: '로그인',
+                      onPressed: () => _login(context),
+                    ),
                   ],
                 ),
                 SizedBox(height: 50,),
                 SocialLogin(),
-                Align(child:
-                Text(
-                  "이용약관 | 개인정보처리방침 | 청소년보호정책",
-                  style: TextStyle(
-                      fontSize: screenWidth*(14/360),
+                Align(
+                  child: Text(
+                    "이용약관 | 개인정보처리방침 | 청소년보호정책",
+                    style: TextStyle(
+                      fontSize: screenWidth * (14 / 360),
                       color: Color.fromRGBO(255, 255, 255, 0.6),
-                      fontWeight: FontWeight.w600),),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -104,123 +130,128 @@ class Login extends StatelessWidget {
       ),
     );
   }
-}
 
-/*
-class LogIn extends StatefulWidget {
-  @override
-  State<LogIn> createState() => _LogInState();
-}
+  void _login(BuildContext context) async {
+    String userEmail = email.text;
+    String userPassword = password.text;
 
-class _LogInState extends State<LogIn> {
+    if (userEmail.isEmpty || userPassword.isEmpty) {
+      showSnackBar(context, '이메일과 비밀번호를 입력하세요.');
+      return;
+    }
 
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+    try {
+      final dio = Dio();
+      final restClient = RestClient(dio);
 
-  @override
-  Widget build(BuildContext context) {
+      final loginDTO = LoginDTO(email: userEmail, password: userPassword);
 
-    var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+      print('LoginDTO: ${loginDTO.toJson()}');
 
-    return Scaffold(
-        body: Column(
-          children: <Widget>[
-            // 로그인 text widget
-            Container(
-              width: 150,
-              height: 250,
-              child: Center(
-                child: Text('로그인',
-                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
-              ),
-            ),
+      final loginResponse = await restClient.loginRequest(loginDTO);
 
-            // 로그인 입력 field widget
-            Container(
-              child: Theme(
-                data: ThemeData(
-                    primaryColor: Color(0xE0E0E0E0),
-                    inputDecorationTheme: InputDecorationTheme(
-                        labelStyle: TextStyle(
-                            color: Color(0xE0E0E0E0),
-                            fontSize: 21.0,
-                            fontWeight: FontWeight.bold
-                        )
-                    )
-                ),
-                child: Container(
-                  padding: EdgeInsets.all(50.0),
-                  child: Column(
-                    children: <Widget>[
-                      TextField(
-                        controller: email,
-                        decoration: InputDecoration(
-                            labelText: '이메일 입력'
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      TextField(
-                        controller: password,
-                        decoration: InputDecoration(
-                            labelText: '비밀번호 입력'
-                        ),
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                      ),
-                      Text('이메일/비밀번호를 잊으셨나요?',
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),),
-                      SizedBox(height: 30.0,),
-                      ButtonTheme(
-                          minWidth: 100.0,
-                          height: 50.0,
-                          child: Row(
-                            children: <Widget>[
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.black),
-                                  child: Text('회원가입',
-                                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
-                                  onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>SignUp()));
-                                  }),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.black),
-                                  child: Text('로그인',
-                                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),),
-                                  onPressed: (){
-                                    if(email.text == '서버 아이디' && password.text == '서버 비밀번호')
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Information()));
-                                    else
-                                      showSnackBar(context);
-                                  })
-                            ],
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              child: Text("이용약관 | 개인정보처리방침 | 청소년보호정책",
-                  style: TextStyle(fontSize: screenWidth*(14/360), color: Color.fromRGBO(255, 255, 255, 0.6),)
-              ),
-            ),
-          ],
-        )
+      print('LoginResponse: ${loginResponse?.toJson()}');
+
+      if (loginResponse == null) {
+        throw Exception('Login response is null');
+      }
+
+      final tokenResponse = loginResponse.tokenDto; // Assuming the tokenDto is part of loginResponse
+
+      if (tokenResponse == null || tokenResponse.refreshToken == null) {
+        throw Exception('Token response or token is null');
+      }
+
+      // 로그인 성공
+      String token = tokenResponse.refreshToken ?? '';
+
+      dio.options.headers['Authorization'] = 'Bearer $token';
+
+      // 로그인 성공 후 페이지 이동
+      if (mounted) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Follow()));
+      }
+
+    } catch (e) {
+      print('Error: $e');
+      showSnackBar(context, '로그인 정보가 올바르지 않습니다.');
+    }
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          textAlign: TextAlign.center,
+        ),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.grey,
+      ),
     );
   }
 }
 
-void showSnackBar(BuildContext context){
-  ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content:
-      Text('로그인 정보를 다시 확인하세요',  // 아이디(이메일) 불일치 || 비밀번호 불일치
-        textAlign: TextAlign.center,),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.grey,
-      )
-  );
+class LoginButton extends StatelessWidget {
+  final String text;
+  final VoidCallback? onPressed;
+
+  const LoginButton({Key? key, required this.text, this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        alignment: Alignment.center,
+        width: 150,
+        height: 40,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+            ),
+          ],
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
 }
-*/
+
+class LoginTextForm extends StatelessWidget {
+  final TextEditingController controller;
+  final String text;
+  final bool obscure;
+  final TextInputType textInputType;
+
+  const LoginTextForm({
+    Key? key,
+    required this.controller,
+    required this.text,
+    required this.obscure,
+    required this.textInputType,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscure,
+      keyboardType: textInputType,
+      decoration: InputDecoration(
+        labelText: text,
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
+}
