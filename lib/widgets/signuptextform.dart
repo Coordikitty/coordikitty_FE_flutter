@@ -32,7 +32,7 @@ class SignUpTextForm extends StatelessWidget {
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(0),
             hintStyle: TextStyle(
-              color: Color(0xffD1D1D1),
+              color: Colors.black,
               height: 1,
             )
         ),
