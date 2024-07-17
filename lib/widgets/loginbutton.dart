@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../login.dart';
-import '../signup.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.text});
@@ -12,10 +10,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        if(text == '회원가입')
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>SignUp()));
-        else if(text == '로그인')
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Login()));
+
       },
       child: Container(
         alignment: Alignment.center,
