@@ -17,25 +17,7 @@ class SocialLogin extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 20,),
-        Image(
-          width: 180,
-          height: 50,
-          image: const AssetImage('image/google_login.png'),
-        ),
-        SizedBox(height: 15,),
-        Image(
-          width: 170,
-          height: 50,
-          image: const AssetImage('image/kakao_login.png'),
-        ),
-        SizedBox(height: 15,),
-        Image(
-          width: 180,
-          height: 50,
-          image: const AssetImage('image/naver_login.png'),
-        ),
-        SizedBox(height: 15,),
+
       ],
     );
   }

@@ -11,13 +11,6 @@ class Login extends StatelessWidget {
   final TextEditingController password = TextEditingController();
 
 
-
-  @override
-  Widget build(BuildContext context) {
-
-    //var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -83,16 +76,7 @@ class Login extends StatelessWidget {
                     LoginButton(text: '로그인',),
                   ],
                 ),
-                SizedBox(height: 50,),
-                SocialLogin(),
-                Align(child:
-                Text(
-                  "이용약관 | 개인정보처리방침 | 청소년보호정책",
-                  style: TextStyle(
-                      fontSize: screenWidth*(14/360),
-                      color: Color.fromRGBO(255, 255, 255, 0.6),
-                      fontWeight: FontWeight.w600),),
-                ),
+
               ],
             ),
           ),
