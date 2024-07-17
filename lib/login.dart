@@ -10,8 +10,7 @@ class Login extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -77,8 +76,7 @@ class Login extends StatelessWidget {
                     LoginButton(text: '로그인',),
                   ],
                 ),
-                SizedBox(width: 50,),
-                SocialLogin(),
+
               ],
             ),
           ),

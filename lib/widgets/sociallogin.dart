@@ -17,6 +17,7 @@ class SocialLogin extends StatelessWidget {
             ),
           ),
         ),
+
       ],
     );
   }

@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../information.dart';
+import '../login.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key, required this.text});
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({super.key, required this.text, required this.color});
 
   final String text;
+  final int color;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-
+      onTap: () {
+        if(text == '확인')
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Information()));
+        else if(text == '취소')
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Login()));
       },
+
       child: Container(
         alignment: Alignment.center,
         width: 150,
         height: 40,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Color(color),
           borderRadius: BorderRadius.circular(6),
           boxShadow: [
             BoxShadow(
@@ -29,22 +36,11 @@ class LoginButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
+              color: Colors.white,
+              fontWeight: FontWeight.w600
           ),
         ),
       ),
     );
   }
-}
-
-void showSnackBar(BuildContext context){
-  ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content:
-      Text('로그인 정보를 다시 확인하세요',  // 아이디(이메일) 불일치 || 비밀번호 불일치
-        textAlign: TextAlign.center,),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.grey,
-      )
-  );
 }
