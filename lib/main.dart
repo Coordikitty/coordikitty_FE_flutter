@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:coordikitty_fe_flutter/information.dart';
+//import 'package:coordikitty_fe_flutter/widgets/tabbar.dart';
+//import 'package:coordikitty_fe_flutter/information.dart';
+import 'follow.dart';
 import 'login.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +25,11 @@ class MyApp extends StatelessWidget {
             height: screenHeight * 0.6,
           ),
           duration: 0,
-          splashTransition: SplashTransition.scaleTransition,
+          //splashTransition: SplashTransition.scaleTransition,
           //splashTransition: SplashTransition.fadeTransition,
-          //splashTransition: SplashTransition.rotationTransition,
+          splashTransition: SplashTransition.rotationTransition,
           backgroundColor: Colors.white,
-          nextScreen: Information(),
+          nextScreen: Follow(),
           //nextScreen: Login(),
         )
     );
