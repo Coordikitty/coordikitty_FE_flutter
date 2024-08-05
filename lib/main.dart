@@ -1,0 +1,38 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:coordikitty_fe_flutter/ui/Auth/login.dart';
+import 'package:coordikitty_fe_flutter/ui/Home/recommend.dart';
+import 'package:coordikitty_fe_flutter/ui/Home/tabbar.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'coordikitty',
+
+        /* 스플래시 스크린 설정 */
+        home: AnimatedSplashScreen(
+          splash: Image(
+            image: const AssetImage('image/coordikitty_logo.png'),
+            width: screenWidth * 0.6,
+            height: screenHeight * 0.6,
+          ),
+          duration: 0,
+          // 이미지 회전 방식 설정
+          splashTransition: SplashTransition.rotationTransition,
+          //splashTransition: SplashTransition.scaleTransition,
+          //splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: Colors.white,
+          nextScreen: Login(),
+        )
+    );
+  }
+}
