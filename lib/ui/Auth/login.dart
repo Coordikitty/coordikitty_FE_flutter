@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:coordikitty_fe_flutter/widget/Auth/loginform.dart';
 import 'package:coordikitty_fe_flutter/dto/Auth/login.dart';
 
+import '../../service/Auth/login.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,6 +24,7 @@ class Login extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     LoginDTO loginDTO = LoginDTO(emailController: emailController, passwordController: passwordController);
+    LoginService loginService = LoginService();
 
     var screenWidth = MediaQuery.of(context).size.width;
 
@@ -100,7 +103,7 @@ class Login extends StatelessWidget {
                     LoginButton(
                       text: '로그인',
                       onPressed: () {
-                        loginDTO.authenticateWithToken(context);
+                        loginService.authenticateWithToken(context, loginDTO);
                       },
                     ),
                   ],

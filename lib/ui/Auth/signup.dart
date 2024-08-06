@@ -1,3 +1,4 @@
+import 'package:coordikitty_fe_flutter/dto/Auth/signup.dart';
 import 'package:flutter/material.dart';
 import '../../widget/Auth/dupcheckbutton.dart';
 import 'information.dart';
@@ -25,6 +26,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  final SignUpDTO signUpDTO = SignUpDTO();
+
+
   final TextEditingController nickname = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();

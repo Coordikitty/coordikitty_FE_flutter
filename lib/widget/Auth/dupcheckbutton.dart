@@ -1,3 +1,4 @@
+import 'package:coordikitty_fe_flutter/service/Auth/dupcheck.dart';
 import 'package:flutter/material.dart';
 import '../../dto/Auth/dupcheck.dart';
 import '../snackbar.dart';
@@ -22,7 +23,8 @@ class DupleCheckButton extends StatelessWidget {
           showSnackBar(context, '값을 입력하세요.');
         } else {
           DupcheckDTO dupcheckDTO = DupcheckDTO();
-          bool? isDuplicate = await dupcheckDTO.checkDuplicate(context, controller.text, isEmail);
+          DupcheckService dupcehckService = DupcheckService();
+          bool? isDuplicate = await dupcehckService.checkDuplicate(context, controller.text, isEmail);
 
           if (isDuplicate == null) {
             onChecked(false);
