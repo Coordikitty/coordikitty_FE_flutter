@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../dto/Profile/cloth.dart';
+import '../../dto/Post/closet.dart';
 
-class ClothService {
+class ClosetService {
   Future<void> submitForm(
       XFile imageFile,
       String large,

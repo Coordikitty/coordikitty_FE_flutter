@@ -51,7 +51,7 @@ class ProfileButton extends StatelessWidget {
                     Navigator.pop(context); // Close the bottom sheet
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Cloth()),
+                      MaterialPageRoute(builder: (context) => Closet()),
                     );
                   },
                 ),

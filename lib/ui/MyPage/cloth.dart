@@ -1,17 +1,18 @@
-// cloth.dart
+// closet.dart
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../dto/Profile/cloth.dart';
+import '../../dto/Post/closet.dart';
 
-class Cloth extends StatefulWidget {
-  const Cloth({super.key});
+class Closet extends StatefulWidget {
+  const Closet({super.key});
 
   @override
-  State<Cloth> createState() => _ClothState();
+  State<Closet> createState() => _ClothState();
 }
 
-class _ClothState extends State<Cloth> {
+class _ClothState extends State<Closet> {
   final _formKey = GlobalKey<FormState>();
   Large? _large;
   Medium? _medium;
@@ -20,19 +21,19 @@ class _ClothState extends State<Cloth> {
   Gender? _gender;
   Style? _style;
   Thickness? _thickness;
-  XFile? _imageFile;
+  Uint8List? _imageData;
 
   final ImagePicker _picker = ImagePicker();
-  final ClothService _clothService = ClothService();
+  final ClosetService _clothService = ClosetService();
 
-  void _pickImage() async {
+  Future<void> _pickImage() async {
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
     );
 
     if (pickedFile != null) {
-      setState(() {
-        _imageFile = pickedFile;
+      setState(() async {
+        _imageData = await pickedFile.readAsBytes();
       });
     }
   }
@@ -45,7 +46,7 @@ class _ClothState extends State<Cloth> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      if (_imageFile == null) {
+      if (_imageData == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('이미지를 선택해주세요')),
         );
@@ -54,7 +55,7 @@ class _ClothState extends State<Cloth> {
 
       try {
         await _clothService.submitForm(
-          _imageFile!,
+          _imageData! as XFile,
           enumToString(_large),
           enumToString(_medium),
           enumToString(_small),
@@ -89,9 +90,9 @@ class _ClothState extends State<Cloth> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _imageFile == null
+                _imageData == null
                     ? const Text('No image selected.')
-                    : Image.file(File(_imageFile!.path)),
+                    : Image.memory(_imageData!),
                 const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(

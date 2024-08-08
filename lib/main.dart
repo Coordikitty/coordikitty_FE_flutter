@@ -1,7 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:coordikitty_fe_flutter/ui/Auth/login.dart';
-import 'package:coordikitty_fe_flutter/ui/Home/recommend.dart';
-import 'package:coordikitty_fe_flutter/ui/Home/tabbar.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
